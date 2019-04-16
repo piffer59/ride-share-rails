@@ -16,6 +16,15 @@ class PassengersController < ApplicationController
   end
 
   def create
+    passenger = Passenger.new(passenger_params)
+
+    is_successful = passenger.save
+
+    if is_successful
+      redirect_to passenger_path(passenger.id)
+    else
+      head :bad_request
+    end
   end
 
   def edit
@@ -25,5 +34,11 @@ class PassengersController < ApplicationController
   end
 
   def delete
+  end
+
+  private
+
+  def passenger_params
+    return params.require(:passenger).permit(:name, :phone_num)
   end
 end

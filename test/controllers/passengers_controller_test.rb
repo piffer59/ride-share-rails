@@ -51,7 +51,25 @@ describe PassengersController do
   end
 
   describe "create" do
-    # Your tests go here
+    it "can save a new passenger" do
+      passenger_hash = {
+        passenger: {
+          name: "new name",
+          phone_num: "my phone number",
+        },
+      }
+
+      # Act-Assert
+      expect {
+        post passengers_path, params: passenger_hash
+      }.must_change "Passenger.count", 1
+
+      new_passenger = Passenger.find_by(name: passenger_hash[:passenger][:name])
+      expect(new_passenger.phone_num).must_equal passenger_hash[:passenger][:phone_num]
+
+      must_respond_with :redirect
+      must_redirect_to passenger_path(new_passenger.id)
+    end
   end
 
   describe "edit" do
