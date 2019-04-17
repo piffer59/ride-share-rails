@@ -100,6 +100,28 @@ describe DriversController do
   end
 
   describe "destroy" do
-    # Your tests go here
+    it "can delete a driver" do
+      # Arrange - Create a task
+      new_driver = Driver.create(name: "Driver to delete", vin: "vin to delete")
+
+      expect {
+
+        # Act
+        delete driver_path(new_driver.id)
+
+        # Assert
+      }.must_change "Driver.count", -1
+
+      must_respond_with :redirect
+      must_redirect_to drivers_path
+    end
+
+    it "returns a 404 if the driver is not found" do
+      invalid_id = "NOT A VALID ID"
+
+      delete driver_path(invalid_id)
+
+      must_respond_with :missing
+    end
   end
 end
