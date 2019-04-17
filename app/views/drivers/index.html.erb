@@ -1,2 +1,9 @@
 <h1>Drivers#index</h1>
+
+<% @drivers.each do |driver| %>
+  <li>
+  <!-- fix anchor -->
+ <%= link_to driver.name, driver_path(driver.id)%>
+  </li>
+<% end %>
 <p>Find me in app/views/drivers/index.html.erb</p>
