@@ -32,7 +32,7 @@ describe PassengersController do
       must_respond_with :success
     end
 
-    it "will redirect for an invalid task" do
+    it "will redirect for an invalid passenger" do
 
       # Act
       get passenger_path(-1)
@@ -82,13 +82,59 @@ describe PassengersController do
       # Assert
       must_respond_with :success
     end
+
+    it "will respond with redirect when attempting to edit a nonexistant Passenger" do
+      bad_passenger_id = "THIS IS INVALID"
+      # Act
+      get edit_passenger_path(bad_passenger_id)
+      # Assert
+      must_redirect_to passengers_path
+    end
   end
 
   describe "update" do
-    # Your tests go here
+    it "can update an existing passenger" do
+      update_passenger_hash = {
+        passenger: {
+          name: "existing name",
+          phone_num: "new number",
+        },
+      }
+      existing_passenger = Passenger.create(name: "existing name", phone_num: "old number")
+
+      patch passenger_path(existing_passenger), params: update_passenger_hash
+
+      existing_passenger.reload
+      expect(existing_passenger.phone_num).must_equal "new number"
+    end
+
+    # it "will redirect to the edit page if given an invalid id" do
+    #   # Arrange
+    #   update_passenger_hash = {
+    #     passenger: {
+    #       name: "update passenger",
+    #       phone_num: "update number",
+    #     },
+    #   }
+    #   invalid_passenger_id = "Invalid"
+    #   #Act
+    #   patch passenger_path(invalid_passenger_id), params: update_passenger_hash
+    #   # Assert
+
+    #   must_redirect_to edit_passenger_path
+    # end
   end
 
   describe "destroy" do
-    # Your tests go here
+    it "returns a 404 if the passenger is not found" do
+      # Arrange
+      invalid_passenger_id = "NOT A VALID ID"
+
+      expect {
+        # Act
+        delete passenger_path(invalid_passenger_id)
+      }.wont_change "Passenger.count"
+      must_respond_with :not_found
+    end
   end
 end
