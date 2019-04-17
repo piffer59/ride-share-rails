@@ -28,9 +28,25 @@ class DriversController < ApplicationController
   end
 
   def edit
+    driver_id = params[:id].to_i
+    @driver = Driver.find_by(id: driver_id)
+
+    if @driver.nil?
+      redirect_to drivers_path
+    end
   end
 
   def update
+    # edit_driver_id = params[:id].to_i
+    edited_driver = Driver.find_by(id: params[:id].to_i)
+
+    if edited_driver != nil
+      edited_driver.update(driver_params)
+      redirect_to driver_path(edited_driver.id)
+    else
+      @driver = edited_driver
+      render :edit, status: :bad_request
+    end
   end
 
   def delete

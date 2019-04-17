@@ -73,11 +73,30 @@ describe DriversController do
   end
 
   describe "edit" do
-    # Your tests go here
+    it "can edit an existing driver" do
+      existing_driver = Driver.create(name: "Driver X", vin: "2123tdfvsdf")
+
+      get edit_driver_path(existing_driver.id)
+
+      must_respond_with :success
+    end
   end
 
   describe "update" do
-    # Your tests go here
+    it "can update an existing driver" do
+      update_driver_hash = {
+        driver: {
+          name: "existing name",
+          vin: "new vin",
+        },
+      }
+      existing_driver = Driver.create(name: "existing name", vin: "old vin")
+
+      patch driver_path(existing_driver), params: update_driver_hash
+
+      existing_driver.reload
+      expect(existing_driver.vin).must_equal "new vin"
+    end
   end
 
   describe "destroy" do
