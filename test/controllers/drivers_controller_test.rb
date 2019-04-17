@@ -49,15 +49,34 @@ describe DriversController do
       must_respond_with :success
     end
   end
+
+  describe "create" do
+    it "can save a new driver" do
+      driver_hash = {
+        driver: {
+          name: "Driver X",
+          vin: "1sdf3vin",
+        },
+      }
+
+      expect {
+        post drivers_path, params: driver_hash
+      }.must_change "Driver.count", 1
+
+      new_driver = Driver.find_by(name: driver_hash[:driver][:name])
+
+      expect(new_driver.vin).must_equal driver_hash[:driver][:vin]
+
+      must_respond_with :redirect
+      must_redirect_to driver_path(new_driver.id)
+    end
+  end
+
   describe "edit" do
     # Your tests go here
   end
 
   describe "update" do
-    # Your tests go here
-  end
-
-  describe "create" do
     # Your tests go here
   end
 

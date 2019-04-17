@@ -16,6 +16,15 @@ class DriversController < ApplicationController
   end
 
   def create
+    driver = Driver.new(driver_params)
+
+    is_successful = driver.save
+
+    if is_successful
+      redirect_to driver_path(driver.id)
+    else
+      head :bad_request
+    end
   end
 
   def edit
@@ -25,5 +34,11 @@ class DriversController < ApplicationController
   end
 
   def delete
+  end
+
+  private
+
+  def driver_params
+    return params.require(:driver).permit(:name, :vin)
   end
 end
