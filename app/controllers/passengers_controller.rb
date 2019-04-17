@@ -12,7 +12,7 @@ class PassengersController < ApplicationController
   end
 
   def new
-    @passenger = Passenger.new(name: "Name")
+    @passenger = Passenger.new(name: "Name", phone_num: "123-123-1234")
   end
 
   def create

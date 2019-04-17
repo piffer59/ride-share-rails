@@ -70,6 +70,12 @@ describe DriversController do
       must_respond_with :redirect
       must_redirect_to driver_path(new_driver.id)
     end
+
+    it "will not save a driver without required information/validion" do
+      new_driver = Driver.create(name: "driver with no vin")
+
+      expect(new_driver.valid?).must_equal false
+    end
   end
 
   describe "edit" do

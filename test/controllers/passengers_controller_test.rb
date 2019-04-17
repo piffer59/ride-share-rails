@@ -70,12 +70,18 @@ describe PassengersController do
       must_respond_with :redirect
       must_redirect_to passenger_path(new_passenger.id)
     end
+
+    it "will not save a passenger without required information/validation" do
+      new_passenger = Passenger.create(name: "passenger with no phone-num")
+
+      expect(new_passenger.valid?).must_equal false
+    end
   end
 
   describe "edit" do
     it "can edit a existing passenger" do
       #Arrange
-      existing_passenger = Passenger.create(name: "Mr. Bob")
+      existing_passenger = Passenger.create(name: "Mr. Bob", phone_num: "333333333")
 
       # Act
       get edit_passenger_path(existing_passenger)
