@@ -28,9 +28,25 @@ class PassengersController < ApplicationController
   end
 
   def edit
+    passenger_id = params[:id].to_i
+    @passenger = Passenger.find_by(id: passenger_id)
+
+    if @passenger.nil?
+      redirect_to passengers_path
+    end
   end
 
   def update
+    edit_passenger_id = params[:id].to_i
+    edited_passenger = Passenger.find_by(id: edit_passenger_id)
+
+    if edited_passenger != nil
+      edited_passenger.update(passenger_params)
+      redirect_to passenger_path(edited_passenger.id)
+    else
+      @passenger = edited_passenger
+      render :edit, status: :bad_request
+    end
   end
 
   def delete

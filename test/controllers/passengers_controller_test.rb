@@ -73,7 +73,15 @@ describe PassengersController do
   end
 
   describe "edit" do
-    # Your tests go here
+    it "can edit a existing passenger" do
+      #Arrange
+      existing_passenger = Passenger.create(name: "Mr. Bob")
+
+      # Act
+      get edit_passenger_path(existing_passenger)
+      # Assert
+      must_respond_with :success
+    end
   end
 
   describe "update" do

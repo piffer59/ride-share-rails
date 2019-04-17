@@ -67,7 +67,7 @@ However far you and your partner get, the application should have, at a minimum,
   - Your model tests should include tests for validations, relationships and any custom methods
   - We have provided a set of sample tests that you can use as a starting place for the `Driver` and `Passenger` models.  We have also provided a scaffolding for the `Trip` model.  You should feel free to adapt the tests to meet your design.
   - You will also need to write tests for all controller actions
-    - We have provided a controller test for a `HomepagesController`, which is a pattern we did not discuss in class. You are free to use this, discard it, or be inspired by it, as long as you sufficient controller test coverage otherwise.
+    - We have provided a controller test for a `HomepagesController`, which is a pattern we did not πdiscuss in class. You are free to use this, discard it, or be inspired by it, as long as you sufficient controller test coverage otherwise.
 
 ### Best Practices
 
