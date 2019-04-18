@@ -1,7 +1,9 @@
 <h1>Passenger Info</h1>
 
 <p> <%= @passenger.name %>, <%= @passenger.phone_num%></p>
-
+<section>
+<h3>Total Charges <%=@passenger.charges %></h3>
+</section>
 <%# <%= link_to "New Trip", new_passenger_trip_path(@trip.passenger_id)%> 
 <%= link_to "Edit Passenger", edit_passenger_path(@passenger.id), method: :get %>
 <%= link_to "Delete #{@passenger.name}", 
