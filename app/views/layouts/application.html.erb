@@ -10,6 +10,18 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <h1>Ride Share!</h1>
+      <section>
+      <%= link_to "Passengers", passengers_path %>
+      <%= link_to "Add a Passengers", new_passenger_path %>
+      <%= link_to "Drivers", drivers_path %>
+        <%= link_to "Add a Driver",
+            new_driver_path  %>
+      </section>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

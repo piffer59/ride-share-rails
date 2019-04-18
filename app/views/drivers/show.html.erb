@@ -1,7 +1,9 @@
 <h1>Drivers#show</h1>
 
 <p> <%= @driver.name %>, VIN: <%= @driver.vin%></p>
-
+<section class="details">
+  <h3>Total Earnings <%=@driver.earnings %></h3>
+</section>
 <%= link_to "Edit Driver", edit_driver_path(@driver.id), method: :get %>
 <%= link_to "Delete #{@driver.name}", 
     driver_path(@driver.id), method: :delete %>

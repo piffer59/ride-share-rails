@@ -2,8 +2,10 @@
 
 <p> <%= @passenger.name %>, <%= @passenger.phone_num%></p>
 
-<%# <%= link_to "New Trip", new_passenger_trip_path(@trip.passenger_id)%> %>
+<%# <%= link_to "New Trip", new_passenger_trip_path(@trip.passenger_id)%> 
 <%= link_to "Edit Passenger", edit_passenger_path(@passenger.id), method: :get %>
 <%= link_to "Delete #{@passenger.name}", 
     passenger_path(@passenger.id), method: :delete %>
+    <%= link_to "Add Trip #{@passenger.name}", 
+    new_passenger_trip_path(@passenger.id)%>
 
