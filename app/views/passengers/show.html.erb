@@ -2,12 +2,15 @@
 
 <p> <%= @passenger.name %>, <%= @passenger.phone_num%></p>
 <section>
-<h3>Total Charges: $<%= (@passenger.charges / 100).round(2)%> </h3>
+<h3>Total Passenger Charges: $<%= (@passenger.charges / 100).round(2)%> </h3>
 
-
-<p><%= @passenger.list_passenger_trips.each do |trip|
-
-end  %></p>
+<h4>List of trips:</h4>
+<p><% @passenger.list_passenger_trips.each do |trip| %>
+<ul>
+<li>Trip id: <%=trip.id%>, Date: <%=trip.date%>, Rating: <%=trip.rating%>, Cost: $<%=(trip.cost/100).round(2)%>, Driver id: <%=trip.driver_id%></li>
+</ul>
+<% end%>
+</p>
 </section>
 <%# <%= link_to "New Trip", new_passenger_trip_path(@trip.passenger_id)%> 
 <%= link_to "Edit Passenger", edit_passenger_path(@passenger.id), method: :get %>
