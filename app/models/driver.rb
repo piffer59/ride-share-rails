@@ -3,6 +3,14 @@ class Driver < ApplicationRecord
   validates :name, presence: true
   validates :vin, presence: true, uniqueness: true
 
+  def list_driver_trips
+    trips = []
+    self.trips.each do |trip|
+      trips << trip
+    end
+    return trips
+  end
+
   def earnings
     revenue = 0
 
