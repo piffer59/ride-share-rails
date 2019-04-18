@@ -12,13 +12,13 @@ class TripsController < ApplicationController
   end
 
   def new
-    passenger = Passenger.find_by(id: params[:passenger_id])
+    passenger = Passgenger.find_by(id: params[:passenger_id])
     driver = Driver.first
-    @trip = Trip.new (date: Date.today, passenger_id: passenger.id, driver_id: driver.id)
+    @trip = Trip.new(date: Date.today, passenger_id: passenger.id, driver_id: driver.id)
   end
 
   def create
-    # select a random driver, use rand. 
+    # select a random driver, use rand.
     @trip = Trip.new(trip_params)
 
     is_successful = @trip.save
