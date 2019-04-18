@@ -5,8 +5,10 @@ class Passenger < ApplicationRecord
   validates :phone_num, presence: true
 
   def charges
+    money = 0
     self.trips.each do |trip|
-      trip.cost
+      money += trip.cost
     end
+    return money
   end
 end

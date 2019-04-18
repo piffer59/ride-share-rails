@@ -2,7 +2,7 @@
 
 <p> <%= @driver.name %>, VIN: <%= @driver.vin%></p>
 <section class="details">
-  <h3>Total Earnings <%=@driver.earnings %></h3>
+  <h3>Total Earnings $<%=(@driver.earnings / 100).round(2)%></h3>
 </section>
 <%= link_to "Edit Driver", edit_driver_path(@driver.id), method: :get %>
 <%= link_to "Delete #{@driver.name}", 
