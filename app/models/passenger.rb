@@ -5,11 +5,11 @@ class Passenger < ApplicationRecord
   validates :phone_num, presence: true
 
   def list_passenger_trips
-    money = 0
+    trips = []
     self.trips.each do |trip|
-      puts "hello"
-      # trip.driver_id
+      trips << trip
     end
+    return trips
   end
 
   def charges
