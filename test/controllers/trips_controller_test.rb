@@ -28,7 +28,7 @@ describe TripsController do
 
       expect {
         post trips_path, params: trip_hash
-      }.must_change "Trips.count", 1
+      }.must_change "Trip.count", 1
     end
   end
 
