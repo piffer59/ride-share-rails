@@ -2,7 +2,13 @@
 
 <p> <%= @passenger.name %>, <%= @passenger.phone_num%></p>
 <section>
-<h3>Total Passenger Charges: $<%= (@passenger.charges / 100).round(2) %> </h3>
+<h3>Total Passenger Charges:</h3> 
+
+<% if @passenger.charges == nil %>
+    <%= @passenger.charges = 0 %>
+<% else %>
+    $<%= (@passenger.charges / 100).round(2) %> 
+<% end %>
 
 <h4>List of trips:</h4>
 <p><% @passenger.list_passenger_trips.each do |trip| %>
@@ -19,8 +25,8 @@
 </section>
 
 <%= link_to "Edit Passenger", edit_passenger_path(@passenger.id), method: :get %>
-<%= link_to "Delete #{@passenger.name}", 
+<%= link_to "Delete Passenger", 
     passenger_path(@passenger.id), method: :delete %>
-<%= link_to "Add Trip #{@passenger.name}", 
+<%= link_to "Add Trip", 
     new_passenger_trip_path(@passenger.id)%>
 

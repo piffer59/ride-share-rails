@@ -69,7 +69,6 @@ describe TripsController do
   describe "update" do
     it "can update an existing trip" do
       existing_trip = Trip.create(date: Date.today, cost: 0, rating: 4, passenger_id: passenger.id, driver_id: driver.id)
-      # existing_trip = Trip.create(date: Date.today, cost: 0, rating: 4, passenger_id: 2, driver_id: 3)
 
       update_trip_hash = {
         trip: {
