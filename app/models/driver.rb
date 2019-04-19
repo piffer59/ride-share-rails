@@ -24,4 +24,15 @@ class Driver < ApplicationRecord
 
     return revenue
   end
+
+  def average_rating
+    rating = 0
+
+    self.trips.each do |trip|
+      rating += trip.rating.to_f
+    end
+
+    return self.trips.length > 0 ?
+             (rating / self.trips.length) : rating
+  end
 end

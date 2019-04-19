@@ -1,9 +1,7 @@
-<h1>Drivers#show</h1>
-
 <p> <%= @driver.name %>, VIN: <%= @driver.vin%></p>
 <section class="details">
   <h3>Total Earnings $<%=(@driver.earnings / 100).round(2)%></h3>
-
+  <h3>Average Rating: <%=@driver.average_rating.round(1)%></h3>
 <h4>List of trips:</h4>
   <p><% @driver.list_driver_trips.each do |trip| %>
     <ul>
