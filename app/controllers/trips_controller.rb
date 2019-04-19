@@ -56,7 +56,7 @@ class TripsController < ApplicationController
       head :not_found
     else
       trip.destroy
-      redirect_to books_path
+      redirect_to trips_path
     end
   end
 

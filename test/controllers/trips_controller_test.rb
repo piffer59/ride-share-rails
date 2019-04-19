@@ -63,6 +63,19 @@ describe TripsController do
   end
 
   describe "destroy" do
-    # Your tests go here
+    # it "can delete a trip" do
+    #   trip_to_delete = Trip.create(date: Date.today, driver_id: 1, passenger_id: 3)
+
+    #   expect {
+
+    #     # Act
+    #     delete trip_path(trip_to_delete.id)
+
+    #     # Assert
+    #   }.must_change "Trip.count", -1
+
+    #   must_respond_with :redirect
+    #   must_redirect_to trips_path
+    # end
   end
 end
