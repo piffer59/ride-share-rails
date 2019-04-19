@@ -4,27 +4,28 @@ class TripsController < ApplicationController
   end
 
   def show
-    trip_id = params[:id].to_i
-    @trip = Trip.find_by(id: trip_id)
+    @trip = Trip.find_by(passenger_id: params[:passenger_id])
     if @trip.nil?
       head :not_found
     end
   end
 
   def new
+    # selects a random driver using rand
+    # Shamira, right now using Driver.rand doesn't work - form won't render. I don't know that you can call rand directly on Drivers because it's not a regular array.
     passenger = Passenger.find_by(id: params[:passenger_id])
     driver = Driver.first
     @trip = Trip.new(date: Date.today, passenger_id: passenger.id, driver_id: driver.id)
   end
 
   def create
-    # select a random driver, use rand.
     @trip = Trip.new(trip_params)
 
     is_successful = @trip.save
 
     if is_successful
-      redirect_to trip_path(@trip.id)
+      # redirect_to trip_path(@trip.id)
+      # redirect_to passenger_path(@trip.passenger_id)
     else
       render :new, status: :bad_request
     end
