@@ -21,8 +21,6 @@ describe TripsController do
   describe "show" do
     it "get get a valid trip" do
       # Act
-      # driver = Driver.create(name: "name", vin: "vin")
-      # passenger = Passenger.create(name: "passenger", phone_num: "12343")
       trip_new = Trip.create(date: Date.today, rating: 4, cost: 7, driver_id: driver.id, passenger_id: passenger.id)
       get trip_path(trip_new.id)
 
@@ -62,34 +60,48 @@ describe TripsController do
 
       existing_trip = Trip.create(date: Date.today, passenger_id: passenger.id, driver_id: driver.id)
 
-      # get edit_trip_path(existing_trip.id)
-
-      # must_respond_with :success
-
       get edit_trip_path(existing_trip.id)
-      # binding.pry
+
       must_respond_with :success
     end
   end
 
   describe "update" do
-    # Your tests go here
+    it "can update an existing trip" do
+      existing_trip = Trip.create(date: Date.today, cost: 0, rating: 4, passenger_id: passenger.id, driver_id: driver.id)
+      # existing_trip = Trip.create(date: Date.today, cost: 0, rating: 4, passenger_id: 2, driver_id: 3)
+
+      update_trip_hash = {
+        trip: {
+          date: existing_trip.date,
+          cost: 123,
+          rating: 5,
+          passenger_id: existing_trip.passenger_id,
+          driver_id: existing_trip.driver_id,
+        },
+      }
+
+      patch trip_path(existing_trip), params: update_trip_hash
+
+      existing_trip.reload
+      expect(existing_trip.cost).must_equal 123
+    end
   end
 
   describe "destroy" do
-    # it "can delete a trip" do
-    #   trip_to_delete = Trip.create(date: Date.today, driver_id: 1, passenger_id: 3)
+    it "can delete a trip" do
+      trip_to_delete = Trip.create(date: Date.today, rating: 4, cost: 7, driver_id: driver.id, passenger_id: passenger.id)
 
-    #   expect {
+      expect {
 
-    #     # Act
-    #     delete trip_path(trip_to_delete.id)
+        # Act
+        delete trip_path(trip_to_delete.id)
 
-    #     # Assert
-    #   }.must_change "Trip.count", -1
+        # Assert
+      }.must_change "Trip.count", -1
 
-    #   must_respond_with :redirect
-    #   must_redirect_to trips_path
-    # end
+      must_respond_with :redirect
+      must_redirect_to trips_path
+    end
   end
 end
