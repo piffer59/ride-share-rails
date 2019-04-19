@@ -4,7 +4,7 @@ class TripsController < ApplicationController
   end
 
   def show
-    @trip = Trip.find_by(passenger_id: params[:passenger_id])
+    @trip = Trip.find_by(id: params[:id])
     if @trip.nil?
       head :not_found
     end
@@ -24,6 +24,7 @@ class TripsController < ApplicationController
     is_successful = @trip.save
 
     if is_successful
+      redirect_to trip_path(@trip.id)
       # redirect_to trip_path(@trip.id)
       # redirect_to passenger_path(@trip.passenger_id)
     else

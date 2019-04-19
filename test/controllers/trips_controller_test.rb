@@ -2,7 +2,7 @@ require "test_helper"
 
 describe TripsController do
   let (:trip) {
-    Trip.create date: Date.today, driver_id: 4, passenger_id: 3
+    Trip.create(date: Date.today, driver_id: 4, passenger_id: 3)
   }
   describe "index" do
     it "can get the index path" do
@@ -12,11 +12,13 @@ describe TripsController do
   end
 
   describe "show" do
-    it "get get a valid trip" do
-      get trip_path(trip.passenger_id)
+    # it "get get a valid trip" do
+    #   # Act
+    #   get trip_path(trip.id)
 
-      must_respond_with :success
-    end
+    #   # Assert
+    #   must_respond_with :success
+    # end
   end
 
   describe "new" do
