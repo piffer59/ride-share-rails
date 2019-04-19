@@ -2,7 +2,7 @@
 
 <p> <%= @passenger.name %>, <%= @passenger.phone_num%></p>
 <section>
-<h3>Total Passenger Charges: $<%= (@passenger.charges / 100).round(2)%> </h3>
+<h3>Total Passenger Charges: $<%=(@passenger.charges / 100).round(2)%> </h3>
 
 <h4>List of trips:</h4>
 <p><% @passenger.list_passenger_trips.each do |trip| %>

@@ -44,7 +44,16 @@ describe TripsController do
   end
 
   describe "edit" do
-    # Your tests go here
+    # it "can edit an existing trip" do
+    #   driver = Driver.create(name: "name", vin: "vin")
+    #   passenger = Passenger.create(name: "passenger", phone_num: "12343")
+
+    #   existing_trip = Trip.create(date: Date.today, passenger_id: passenger, driver_id: driver)
+
+    #   get edit_trip_path(existing_trip.id)
+
+    #   must_respond_with :success
+    # end
   end
 
   describe "update" do
