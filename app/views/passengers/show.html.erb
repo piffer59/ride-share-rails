@@ -2,12 +2,13 @@
 
 <p> <%= @passenger.name %>, <%= @passenger.phone_num%></p>
 <section>
-<h3>Total Passenger Charges:</h3> $<%= @passenger.charges %> 
+<h3>Total Passenger Charges:</h3> $<%= (@passenger.charges / 100).round(2) %> 
 
 <h4>List of trips:</h4>
 <p><% @passenger.list_passenger_trips.each do |trip| %>
 <ul>
-<li>Trip id: <%= trip.id %>, Date: <%= trip.date %>, Rating: <%= trip.rating %>, Cost: $<%= (trip.cost/100).round(2) %>, Driver id: <%= trip.driver_id %>
+
+<li>Trip id: <%= trip.id %>, Date: <%= trip.date %>, Rating: <%= trip.rating %>, Cost: $<%= trip.cost != nil ?(trip.cost/100).round(2) : 0 %>, Driver id: <%= trip.driver_id %>
 <%= link_to "View Trip", trip_path(trip.id) %>
 </li>
 </ul>

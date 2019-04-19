@@ -5,7 +5,7 @@
 <h4>List of trips:</h4>
   <p><% @driver.list_driver_trips.each do |trip| %>
     <ul>
-      <li>Trip id: <%=trip.id%>, Date: <%=trip.date%>, Rating: <%=trip.rating%>, Cost: $<%=(trip.cost/100).round(2)%>, Passenger id: <%=trip.passenger_id%>
+      <li>Trip id: <%=trip.id%>, Date: <%=trip.date%>, Rating: <%=trip.rating%>, Cost: $<%= trip.cost != nil ?(trip.cost / 100).round(2) : 0 %>, Passenger id: <%=trip.passenger_id%>
       <%= link_to "View Trip", trip_path(trip.id)%>
       </li>
     </ul>
