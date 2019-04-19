@@ -15,10 +15,10 @@ class Driver < ApplicationRecord
     revenue = 0
 
     self.trips.each do |trip|
-      if trip.cost < 165
-        revenue += 100
-      elsif trip.cost == nil
+      if trip.cost == nil
         revenue += 0
+      elsif trip.cost < 165
+        revenue += 100
       else
         revenue += ((trip.cost - 165) * 0.8)
       end
