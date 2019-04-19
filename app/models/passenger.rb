@@ -15,7 +15,12 @@ class Passenger < ApplicationRecord
   def charges
     money = 0
     self.trips.each do |trip|
-      money += trip.cost
+      if trip.cost == nil
+        money += 0
+      else
+        trip.cost
+        money += trip.cost
+      end
     end
     return money
   end
