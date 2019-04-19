@@ -1,8 +1,15 @@
 require "test_helper"
+require "pry"
 
 describe TripsController do
   let (:trip) {
-    Trip.create(date: Date.today, driver_id: 4, passenger_id: 3)
+    Trip.create(date: Date.today, rating: 4, cost: 7, driver_id: 4, passenger_id: 8)
+  }
+  let (:driver) {
+    Driver.create(name: "name", vin: "vin")
+  }
+  let (:passenger) {
+    Passenger.create(name: "passenger", phone_num: "12343")
   }
   describe "index" do
     it "can get the index path" do
@@ -12,13 +19,16 @@ describe TripsController do
   end
 
   describe "show" do
-    # it "get get a valid trip" do
-    #   # Act
-    #   get trip_path(trip.id)
+    it "get get a valid trip" do
+      # Act
+      # driver = Driver.create(name: "name", vin: "vin")
+      # passenger = Passenger.create(name: "passenger", phone_num: "12343")
+      trip_new = Trip.create(date: Date.today, rating: 4, cost: 7, driver_id: driver.id, passenger_id: passenger.id)
+      get trip_path(trip_new.id)
 
-    #   # Assert
-    #   must_respond_with :success
-    # end
+      # Assert
+      must_respond_with :success
+    end
   end
 
   describe "new" do
@@ -46,16 +56,20 @@ describe TripsController do
   end
 
   describe "edit" do
-    # it "can edit an existing trip" do
-    #   driver = Driver.create(name: "name", vin: "vin")
-    #   passenger = Passenger.create(name: "passenger", phone_num: "12343")
+    it "can edit an existing trip" do
+      driver = Driver.create(name: "name", vin: "vin")
+      passenger = Passenger.create(name: "passenger", phone_num: "12343")
 
-    #   existing_trip = Trip.create(date: Date.today, passenger_id: passenger, driver_id: driver)
+      existing_trip = Trip.create(date: Date.today, passenger_id: passenger.id, driver_id: driver.id)
 
-    #   get edit_trip_path(existing_trip.id)
+      # get edit_trip_path(existing_trip.id)
 
-    #   must_respond_with :success
-    # end
+      # must_respond_with :success
+
+      get edit_trip_path(existing_trip.id)
+      # binding.pry
+      must_respond_with :success
+    end
   end
 
   describe "update" do

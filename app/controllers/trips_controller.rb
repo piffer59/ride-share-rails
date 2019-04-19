@@ -11,8 +11,6 @@ class TripsController < ApplicationController
   end
 
   def new
-    # selects a random driver using rand
-    # Shamira, right now using Driver.rand doesn't work - form won't render. I don't know that you can call rand directly on Drivers because it's not a regular array.
     passenger = Passenger.find_by(id: params[:passenger_id])
     driver = Driver.first
     @trip = Trip.new(date: Date.today, passenger_id: passenger.id, driver_id: driver.id)
